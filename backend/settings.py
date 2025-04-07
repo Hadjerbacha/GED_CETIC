@@ -15,6 +15,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# backend/settings.py
+ALFRESCO_BASE_URL = "http://localhost:8080/alfresco/api/-default-/public/workflow/versions/1"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'alfresco_api', 
+    'workflows', 
 ]
 
 MIDDLEWARE = [
@@ -51,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'workflows',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -134,3 +138,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+CORS_ALLOW_HEADERS = ["*"]
+
+DEBUG = True
+
+CELERY_BROKER_URL = "redis://localhost:6379/0"

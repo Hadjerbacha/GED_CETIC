@@ -24,3 +24,5 @@ def alfresco_login(request):
             return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse({"error": "Méthode non autorisée"}, status=400)
+
+
